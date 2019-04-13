@@ -29,6 +29,33 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.get('/profile/:userid', (req, res) => {
+  //res.send("Hello World");
+  //res.send(config);
+
+  return cors(req, res, () => {
+		// var userID = req.query.userID; 
+		// var object;
+
+		// console.log(req.query.userID);
+    console.log(req.params.userid)
+    // firebase.database().ref('/').once("value", (data) => {res.send(data);});
+    firebase.database().ref('/UserAccount/' + req.params.userid).once('value', (data) => {res.send(data);});
+
+	});
+});
+
+app.get('/package/:packageid', (req, res) => {
+  return cors(req, res, () => {
+    firebase.database().ref('/Package/' + req.params.packageid).once('value', (data) => {res.send(data);});
+  });
+});
+
+app.get('/travel/:tid', (req, res) => {
+  return cors(req, res, () => {
+    firebase.database().ref('/TravelInformation/' + req.params.tid).once('value', (data) => {res.send(data);});
+  });
+});
 
 app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
