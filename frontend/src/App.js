@@ -1,28 +1,114 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {BottomNavigation, BottomNavigationAction, MuiThemeProvider, createMuiTheme} from '@material-ui/core';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import UpcomingIcon from '@material-ui/icons/CalendarToday';
+import HistoryIcon from '@material-ui/icons/History';
+import Login from './components/Login';
+import temp from './components/temp';
+import Schedule from './components/Schedule';
+import Upcoming from './components/Upcoming';
 import './App.css';
 
+const theme = createMuiTheme({
+    overrides: {
+        MuiButton: {
+            text: {
+            backgroundColor: 'linear-gradient(to bottom, #77c9d4, #65c7c8, #58c4b9, #53c0a6, #57bc90);',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 30,
+            padding: '0 30px',
+            margin: '20px',
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            fontFamily: 'Montserrat',
+            fontWeight: 700,
+            fontSize: 14
+            },
+        },
+        MuiBottomNavigation: {
+            root: {
+                backgroundColor: '#58c4b9',
+            }
+        },
+        MuiBottomNavigationAction: {
+            root: {
+                color: '#000000',
+            },
+            iconOnly: {
+                color: '#FF0000'
+            },
+            wrapper: {
+                color: '#FFFFFF ',
+            }
+        },
+    },
+    MuiPickers: {
+        root: {
+            backgroundColor: '#77c9d4'
+        },
+    },
+    typography: {
+        useNextVariants: true,
+        h2: {
+            fontFamily: 'Montserrat',
+            color: '#FFFFFF'
+        },
+        h3: {
+            fontSize: 30,
+            fontFamily: 'Montserrat',
+            color: '#665566'
+        }
+    }
+});
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    state = {
+        value: 'schedule'
+    };
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
+    render() {
+        return (
+            <MuiThemeProvider theme={theme}>
+                <Router basename={process.env.PUBLIC_URL}>
+                <Route exact strict path='/' render={() => <Login successfulLogin={ this.successfulLogin }/> }/>
+                <Route strict path='/:page' render={() => 
+                    <div className="page">
+                        <Route path='/schedule' component={Schedule} />
+                        <Route path='/upcoming' component={Upcoming} />
+                        <Route path='/history' component={temp} />
+                        <BottomNavigation value={this.state.value} onChange={this.handleChange} className="bottom-nav">
+                            <BottomNavigationAction
+                                label="Schedule"
+                                value="schedule"
+                                component={Link}
+                                to="/schedule"
+                                icon={<ScheduleIcon />}
+                            />
+                            <BottomNavigationAction
+                                label="Upcoming"
+                                value="upcoming"
+                                component={Link}
+                                to="/upcoming"
+                                icon={<UpcomingIcon />}
+                            />
+                            <BottomNavigationAction
+                                label="History"
+                                value="history"
+                                component={Link}
+                                to="/history"
+                                icon={<HistoryIcon />}
+                            />
+                        </BottomNavigation>
+                    </div>
+                    } />
+                </Router>
+            </MuiThemeProvider>
+        );
+    }
 }
 
 export default App;

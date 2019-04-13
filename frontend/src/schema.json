@@ -1,0 +1,14 @@
+[
+    {
+        "Name": "Trip To Paris",
+        "UserID": 1,
+        "TID": 0,
+        "UserDestinationA": "Airport 1",
+        "UserDestinationB": "Airport 2",
+        "Time Leave": "15:30:00",
+        "Time Arrival": "15:30:00",
+        "Weight": 12,
+        "Dimensions": "12 x 12 x 12",
+        "Description": "Paris"
+    }
+]
