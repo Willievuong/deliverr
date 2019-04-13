@@ -19,8 +19,6 @@ firebase.initializeApp({
  databaseURL: "https://deliverr-it-bitch.firebaseio.com"
 });
 
-
-
 app.get('/', (req, res) => {
   return cors(req, res, () => {
 		 firebase.database().ref('/').once("value", (data) => {res.send(data);});
@@ -78,12 +76,42 @@ app.get('/travelInfo/:userid', (req, res) => {
   res.send(array)});
 });
 
-app.get('/getpackageby/:tid', (req, res) => {
+app.get('/getpackageA/:userid', (req, res) => {
+  var userid = req.params.userid;
+  var array = [];
+  var accList = {}
+  firebase.database().ref('/TravelInformation').once('value', (data) => {
+  accList = data.val(); }).then(() => {
+  var i = 0
+  var loopBool = true
+  while(loopBool) {
+    if (accList[i.toString()]){
+
+      if(accList[i.toString()]["UserID"] == userid){
+        console.log(accList[i.toString()])
+        array.push(accList[i.toString()])
+      }
+
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+  }
+  res.send(array)});
+});
+
+app.get('/getpackageB/:uid', (req, res) => {
   return cors(req, res, () => {
-    firebase.database().ref('/TravelInformation/' + req.params.tid).once('value', (data) => {res.send(data);});
+    firebase.database().ref('/Package/' + req.params.tid).once('value', (data) => {res.send(data);});
   });
 });
 
+app.get('/getpackageC/:uid', (req, res) => {
+  return cors(req, res, () => {
+    firebase.database().ref('/Package/' + req.params.tid).once('value', (data) => {res.send(data);});
+  });
+});
 
 app.post('/addprofile', (req, res) => {
   // res.send(req.body)
@@ -91,6 +119,7 @@ app.post('/addprofile', (req, res) => {
   return cors(req, res, () => {
 
     var newPostKey = firebase.database().ref().child('UserAccount').push().key;
+    updates[/UserAccount/UserID/ + newPostKey] = postData
     firebase.database().ref('UserAccount').set(body, function(error) {
       if (error) {
         // The write failed...
