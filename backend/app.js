@@ -22,30 +22,15 @@ firebase.initializeApp({
 
 
 app.get('/', (req, res) => {
-  //res.send("Hello World");
-  //res.send(config);
   return cors(req, res, () => {
-		// var userID = req.query.userID;
-		// var object;
-
-		// console.log(req.query.userID);
-
 		 firebase.database().ref('/').once("value", (data) => {res.send(data);});
 
 	});
-});
+})
 
 app.get('/profile/:userid', (req, res) => {
-  //res.send("Hello World");
-  //res.send(config);
-
   return cors(req, res, () => {
-		// var userID = req.query.userID;
-		// var object;
-
-		// console.log(req.query.userID);
     console.log(req.params.userid)
-    // firebase.database().ref('/').once("value", (data) => {res.send(data);});
     firebase.database().ref('/UserAccount/' + req.params.userid).once('value', (data) => {res.send(data);});
 
 	});
@@ -62,6 +47,61 @@ app.get('/travel/:tid', (req, res) => {
     firebase.database().ref('/TravelInformation/' + req.params.tid).once('value', (data) => {res.send(data);});
   });
 });
+
+app.get('/travelInfo/:userid', (req, res) => {
+  var userid = req.params.userid;
+  var array = [];
+  var accList = {}
+  firebase.database().ref('/TravelInformation').once('value', (data) => {
+  accList = data.val(); }).then(() => {
+  var i = 0
+  var loopBool = true
+  while(loopBool) {
+    console.log("Helo")
+    console.log(accList)
+    console.log(accList[i.toString()])
+    if (accList[i.toString()]){
+
+      if(accList[i.toString()]["UserID"] == userid){
+        console.log(accList[i.toString()])
+        array.push(accList[i.toString()])
+      }
+
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+  }
+
+
+  res.send(array)});
+});
+
+app.get('/getpackageby/:tid', (req, res) => {
+  return cors(req, res, () => {
+    firebase.database().ref('/TravelInformation/' + req.params.tid).once('value', (data) => {res.send(data);});
+  });
+});
+
+
+app.post('/addprofile', (req, res) => {
+  // res.send(req.body)
+  var body = req.body
+  return cors(req, res, () => {
+
+    var newPostKey = firebase.database().ref().child('UserAccount').push().key;
+    firebase.database().ref('UserAccount').set(body, function(error) {
+      if (error) {
+        // The write failed...
+      } else {
+        // Data saved successfully!
+        res.send("Success")
+      }
+    });
+  });
+});
+
 
 app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
