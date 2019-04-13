@@ -1,7 +1,7 @@
 //Express
 var express = require('express');
 var fs = require('fs');
-var app = express(); 
+var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors')({origin: true});
 var config = require('./config')
@@ -10,8 +10,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors);
 
-var firebase = require('firebase-admin');
-firebase.initializeApp(config);
+var firebase= require("firebase-admin");
+
+var serviceAccount = require("./key.json");
+
+firebase.initializeApp({
+ credential: firebase.credential.cert(serviceAccount),
+ databaseURL: "https://deliverr-it-bitch.firebaseio.com"
+});
 
 
 
@@ -19,7 +25,7 @@ app.get('/', (req, res) => {
   //res.send("Hello World");
   //res.send(config);
   return cors(req, res, () => {
-		// var userID = req.query.userID; 
+		// var userID = req.query.userID;
 		// var object;
 
 		// console.log(req.query.userID);
@@ -34,7 +40,7 @@ app.get('/profile/:userid', (req, res) => {
   //res.send(config);
 
   return cors(req, res, () => {
-		// var userID = req.query.userID; 
+		// var userID = req.query.userID;
 		// var object;
 
 		// console.log(req.query.userID);
