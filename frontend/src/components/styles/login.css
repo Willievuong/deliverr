@@ -1,4 +1,15 @@
 .login-page{
     height: 100vh;
+    padding-top: 40vh;
+    box-sizing: border-box;
     background-image: linear-gradient(to bottom, #77c9d4, #65c7c8, #58c4b9, #53c0a6, #57bc90);
+}
+.name{
+    text-align: center;
+}
+.google-login-btn{
+    text-align: center;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 100%;
 }
