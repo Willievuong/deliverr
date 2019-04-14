@@ -17,4 +17,6 @@ var sendNotification = (email, url, userName, website) => {
   sgMail.send(msg);
 }
 
-sendNotification("wpvuong@ucsd.edu", "something", "William Vuong", "https://c9a7fd17.ngrok.io");
+// Example of using the sendNotification  
+// sendNotification("wpvuong@ucsd.edu", "something", "William Vuong", "https://c9a7fd17.ngrok.io");
+module.exports = sendNotification;

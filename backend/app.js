@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')({origin: true});
 var config = require('./config')
 var fbconfig = require('./fbconfig')
+var sendgridApi = require ('./sendgridApi')
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -429,4 +430,5 @@ app.post('/updatepackage/:packageindex', (req, res) => {
 
 app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
+  //sendgridApi("wpvuong@ucsd.edu", "Whoooa", "Drew Che", "https://c9a7fd17.ngrok.io");
 });
