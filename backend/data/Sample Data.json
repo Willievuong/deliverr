@@ -1,82 +1,106 @@
 {
-  "Package" : [ {
-    "DName" : "Jeffrey Ha",
-    "Desc" : "Chocolate",
-    "Dimen" : "12 x 12 x 12",
-    "Package DID" : 1,
-    "Package ID" : 0,
-    "PLA" : "123 Street",
-    "PLB" : "321 Street",
-    "Package Name" : "Awake Chocolate",
-    "Received" : 0,
-    "Receiver ID" : 2,
-    "Receiver Name" : "Will Tran",
-    "Sendee ID" : 0,
-    "Sendee Name" : "Stanley Lee",
-    "Sent" : 1,
-    "TID" : 0,
-    "Weight" : 12
-  } ],
-  "TravelInformation" : [ {
-    "Desc" : "Paris",
-    "Dimen" : "12 x 12 x 12",
-    "Name" : "Trip To Paris",
-    "TID" : 0,
-    "TimeA" : "15:30:00",
-    "TimeL" : "15:30:00",
-    "UserDestA" : "Airport 1",
-    "UserDestB" : "Airport 2",
-    "UserID" : 1,
-    "Weight" : 12
-  },
+  "Package":[
      {
-        "Desc" : "Spain",
-        "Dimen" : "12 x 12 x 12",
-        "Name" : "Trip To Spain",
-        "TID" : 1,
-        "TimeA" : "15:30:00",
-        "TimeL" : "15:30:00",
-        "UserDestA" : "Airport 1",
-        "UserDestB" : "Airport 2",
-        "UserID" : 1,
-        "Weight" : 12
-      },
+        "DName":"Jeffrey Ha",
+        "Desc":"Chocolate",
+        "Dimen":"12 x 12 x 12",
+        "PackageDID":1,
+        "PackageID":0,
+        "PLA":"123 Street",
+        "PLB":"321 Street",
+        "PackageName":"Awake Chocolate",
+        "Received":0,
+        "ReceiverID":2,
+        "ReceiverName":"Will Tran",
+        "SendeeID":0,
+        "SendeeName":"Stanley Lee",
+        "Sent":1,
+        "TID":0,
+        "Weight":12,
+        "AdresseeEmail": "stanleylee91776@gmail.com",
+        "AdresseePhone":"6262728111"
+     }
+  ],
+  "TravelInformation":[
      {
-        "Desc" : "Germany",
-        "Dimen" : "12 x 12 x 12",
-        "Name" : "Trip To Germany",
-        "TID" : 2,
-        "TimeA" : "15:30:00",
-        "TimeL" : "15:30:00",
-        "UserDestA" : "Airport 1",
-        "UserDestB" : "Airport 2",
-        "UserID" : 2,
-        "Weight" : 12
-      }
-],
-  "UserAccount" : [ {
-    "Drating" : 4.5,
-    "Email" : "stl005@ucsd.edu",
-    "FB Token" : 0,
-    "Name" : "Stanley Lee",
-    "Phone" : "+16262728111",
-    "SR Rating" : 4.7,
-    "UserID" : 0
-  }, {
-    "DRating" : 1.1,
-    "Email" : "jha@ucsd.edu",
-    "FB Token" : 1,
-    "Name" : "Jeffrey Ha",
-    "Phone" : "+16262728111",
-    "SR Rating" : 0.9,
-    "UserID" : 1
-  }, {
-    "DRating" : 0.1,
-    "Email" : "wtran005@ucsd.edu",
-    "FB Token" : 2,
-    "Name" : "Will Tran",
-    "Phone" : "+16262728111",
-    "SR Rating" : 0.2,
-    "UserID" : 2
-  } ]
+        "Desc":"Paris",
+        "Dimen":"12 x 12 x 12",
+        "Name":"Trip To Paris",
+        "TID":0,
+        "TimeA":"15:30:00",
+        "TimeL":"15:30:00",
+        "UserDestA":"Airport 1",
+        "UserDestB":"Airport 2",
+        "UserID":1,
+        "Weight":12
+     },
+     {
+        "Desc":"Spain",
+        "Dimen":"12 x 12 x 12",
+        "Name":"Trip To Spain",
+        "TID":1,
+        "TimeA":"15:30:00",
+        "TimeL":"15:30:00",
+        "UserDestA":"Airport 1",
+        "UserDestB":"Airport 2",
+        "UserID":1,
+        "Weight":12
+     },
+     {
+        "Desc":"Germany",
+        "Dimen":"12 x 12 x 12",
+        "Name":"Trip To Germany",
+        "TID":2,
+        "TimeA":"15:30:00",
+        "TimeL":"15:30:00",
+        "UserDestA":"Airport 1",
+        "UserDestB":"Airport 2",
+        "UserID":2,
+        "Weight":12
+     }
+  ],
+  "UserAccount":[
+     {
+        "Drating":4.5,
+        "Email":"stl005@ucsd.edu",
+        "facebookUserId":0,
+        "Name":"Stanley Lee",
+        "Phone":"+16262728111",
+        "SRRating":4.7,
+        "UserID":0
+     },
+     {
+        "DRating":1.1,
+        "Email":"jha@ucsd.edu",
+        "facebookUserId":1,
+        "Name":"Jeffrey Ha",
+        "Phone":"+16262728111",
+        "SRRating":0.9,
+        "UserID":1
+     },
+     {
+        "DRating":0.1,
+        "Email":"wtran005@ucsd.edu",
+        "facebookUserId":2,
+        "Name":"Will Tran",
+        "Phone":"+16262728111",
+        "SRRating":0.2,
+        "UserID":2
+     }
+  ],
+   "EmailLink": {
+     "584A2": {
+        "PackageID": 0,
+        "Clicked": 1
+        },
+
+     "284A2": {
+        "PackageID": 1,
+        "Clicked": 0
+     },
+     "544A2": {
+        "PackageID": 2,
+        "Clicked": 0
+        }
+     }
 }
