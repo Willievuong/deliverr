@@ -14,6 +14,7 @@ var firebase= require("firebase-admin");
 
 var serviceAccount = require("./key.json");
 
+function makeid(length) {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
