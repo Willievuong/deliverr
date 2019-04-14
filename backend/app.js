@@ -254,11 +254,11 @@ app.get('/getpackageC/:recieverid', (req, res) => {
   res.send(array)});
 });
 
-app.get('/getmail/:mailid', (req, res) => {
-return cors(req, res, () => {
-  firebase.database().ref('/EmailLink/' + req.params.mailid).once('value', (data) => {res.send(data);});
-  });
-}
+// app.get('/getmail/:mailid', (req, res) => {
+// return cors(req, res, () => {
+//   firebase.database().ref('/EmailLink/' + req.params.mailid).once('value', (data) => {res.send(data);});
+//   });
+// }
 
 // app.post('/postmail, (req, res) => {
 //   var profile = req.body
