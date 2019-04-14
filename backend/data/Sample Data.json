@@ -8,12 +8,12 @@
         "Package ID":0,
         "PLA":"123 Street",
         "PLB":"321 Street",
-        "Package Name":"Awake Chocolate",
+        "PackageName":"Awake Chocolate",
         "Received":0,
-        "Receiver ID":2,
-        "Receiver Name":"Will Tran",
-        "Sendee ID":0,
-        "Sendee Name":"Stanley Lee",
+        "ReceiverID":2,
+        "ReceiverName":"Will Tran",
+        "SendeeID":0,
+        "SendeeName":"Stanley Lee",
         "Sent":1,
         "TID":0,
         "Weight":12
@@ -64,7 +64,7 @@
         "facebookUserId":0,
         "Name":"Stanley Lee",
         "Phone":"+16262728111",
-        "SR Rating":4.7,
+        "SRRating":4.7,
         "UserID":0
      },
      {
@@ -73,7 +73,7 @@
         "facebookUserId":1,
         "Name":"Jeffrey Ha",
         "Phone":"+16262728111",
-        "SR Rating":0.9,
+        "SRRating":0.9,
         "UserID":1
      },
      {
@@ -82,7 +82,7 @@
         "facebookUserId":2,
         "Name":"Will Tran",
         "Phone":"+16262728111",
-        "SR Rating":0.2,
+        "SRRating":0.2,
         "UserID":2
      }
   ],

@@ -24,25 +24,6 @@ function makeid(length) {
   return text;
 }
 
-function find_length(json) {
-  var i = 0
-  var loopBool = true
-  while(loopBool) {
-    if (accList[i.toString()]){
-      if(accList[i.toString()]["UserID"] == userid){
-        var user = accList[i.toString()]
-        res.send(user)
-        loopBool = false;
-        break;
-      }
-        i++;
-    }else{
-      loopBool = false;
-      break;
-    }
-    return i
-}
-
 firebase.initializeApp({
  credential: firebase.credential.cert(serviceAccount),
  databaseURL: "https://deliverr-it-bitch.firebaseio.com"
@@ -279,6 +260,7 @@ return cors(req, res, () => {
   });
 });
 
+// ALL THE POSTS
 
 app.post('/postmail', (req, res) => {
   var profile = req.body
@@ -301,29 +283,148 @@ app.post('/updatemail/:mailid', (req, res) => {
   });
 });
 
-// app.post('/updatetrip', (req, res) => {
-//   var array = [];
-//   var accList = {}
-//   firebase.database().ref('/TravelInformation').once('value', (data) => {
-//   accList = data.val(); }).then(() => {
-//   var i = 0
-//   var loopBool = true
-//   while(loopBool) {
-//     if (accList[i.toString()]){
-//       if(accList[i.toString()]["TID"] == tid){
-//         var user = accList[i.toString()]
-//         res.send(user)
-//         loopBool = false;
-//         break;
-//       }
-//         i++;
-//     }else{
-//       loopBool = false;
-//       break;
-//     }
-//   }
-//   console.log(i)
-// });
+app.post('/postuser', (req, res) => {
+  var accList = {}
+  var i = 0
+  firebase.database().ref('/UserAccount').once('value', (data) => {
+  accList = data.val(); }).then(() => {
+
+  var loopBool = true
+  while(loopBool) {
+    if (accList[i.toString()]){
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+  }
+  //res.send(array)
+  }).then(()=>{
+    var newTid = i + 1;
+    var profile = req.body;
+    console.log("In last part")
+
+    firebase.database().ref('UserAccount/' + i.toString()).set({
+      Drating: profile["Drating"],
+      Email: profile["Email"],
+      facebookUserId: profile["facebookUserId"],
+      Name: profile["Name"],
+      Phone: profile["Phone"],
+      SRRating: profile["SRRating"],
+      UserID: makeid(5)
+    }).then(() => {
+      res.send("It wooorks")
+    });
+  })
+
+});
+
+app.post('/posttrip', (req, res) => {
+  var accList = {}
+  var i = 0
+  firebase.database().ref('/TravelInformation').once('value', (data) => {
+  accList = data.val(); }).then(() => {
+
+  var loopBool = true
+  while(loopBool) {
+    if (accList[i.toString()]){
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+  }
+  //res.send(array)
+  }).then(()=>{
+    var newTid = i + 1;
+    var profile = req.body;
+    console.log("In last part")
+
+    firebase.database().ref('TravelInformation/' + i.toString()).set({
+      Desc: profile["Desc"],
+      Dimen: profile["Dimen"],
+      Name: profile["Name"],
+      TID: makeid(5),
+      TimeA: profile["TimeA"],
+      TimeL: profile["TimeL"],
+      UserDestA: profile["UserDestA"],
+      UserDestB: profile["UserDestB"],
+      UserID: profile["UserID"],
+      Weight: profile["Weight"]
+    }).then(() => {
+      res.send("It wooorks")
+    });
+  })
+
+});
+
+app.post('/postcreatepack', (req, res) => {
+  var accList = {}
+  var i = 0
+  firebase.database().ref('/TravelInformation').once('value', (data) => {
+  accList = data.val(); }).then(() => {
+
+  var loopBool = true
+  while(loopBool) {
+    if (accList[i.toString()]){
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+  }
+  //res.send(array)
+  }).then(()=>{
+    var newTid = i + 1;
+    var profile = req.body;
+    console.log("In last part")
+    firebase.database().ref('Package/' + i.toString()).set({
+      DName: profile["DName"],
+      Desc:  profile["Desc"],
+      Dimen:  profile["Dimen"],
+      PackageDID:  profile["Package DID"],
+      PackageID: makeid(5),
+      PLA: profile["PLA"],
+      PLB: profile["PLB"],
+      PackagName: profile["Package Name"],
+      Received: profile["Received"],
+      ReceiverID: profile["Receiver ID"],
+      ReceiverName: profile["Receiver Name"],
+      SendeeID: profile["Sendee ID"],
+      SendeeName: profile["Sendee Name"],
+      Sent: profile["Sent"],
+      TID: profile["TID"],
+      Weight: profile["Weight"]
+    }).then(() => {
+      res.send("It wooorks")
+    });
+  })
+
+});
+
+app.post('/updatepackage/:packageindex', (req, res) => {
+  var profile = req.body
+  firebase.database().ref('package/' + req.params.packageindex).set({
+      DName: profile["DName"],
+      Desc:  profile["Desc"],
+      Dimen:  profile["Dimen"],
+      PackageDID:  profile["Package DID"],
+      PackageID: profile["PackageID"],
+      PLA: profile["PLA"],
+      PLB: profile["PLB"],
+      PackagName: profile["Package Name"],
+      Received: profile["Received"],
+      ReceiverID: profile["Receiver ID"],
+      ReceiverName: profile["Receiver Name"],
+      SendeeID: profile["Sendee ID"],
+      SendeeName: profile["Sendee Name"],
+      Sent: profile["Sent"],
+      TID: profile["TID"],
+      Weight: profile["Weight"]
+  }).then(() => {
+    res.send("It wooorks")
+  });
+});
 
 
 app.listen(5000, () => {
