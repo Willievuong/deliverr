@@ -5,6 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors')({origin: true});
 var config = require('./config')
+var fbconfig = require('./fbconfig')
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -31,8 +32,47 @@ firebase.initializeApp({
 app.get('/', (req, res) => {
   return cors(req, res, () => {
 		 firebase.database().ref('/').once("value", (data) => {res.send(data);});
-
 	});
+})
+
+
+//LOGIN IS NOT TESTED 
+app.get('/login', (req, res) => {
+  const fbRes = req.body.fbRes; 
+  const fUid = fbRes.userID; 
+  const accessToken = fbRes. accessToken; 
+
+  axios.get(`https://graph.facebook.com/debug_token?input_token=${accessToken}&access_token=${appId}|${appSecret}`).then(res => {
+    if(res.data.data.is_valid){
+          //Check Firebase Database 
+          var accList; 
+          firebase.database().ref('/TravelInformation').once('value', (data) => {
+            accList = data.val(); }).then(() => {
+              var i = 0
+              var loopBool = true
+              var userAcc = {}
+              while(loopBool) {
+                if (accList[i.toString()]){
+                  if(accList[i.toString()]["facebookUserId"] == fUid){
+                    userAcc = accList[i.toString()]
+                    res.status(200).json({ userId: user.id });
+                    loopBool = false
+                    break; 
+                  }
+                    i++;
+                }else{
+                  loopBool = false;
+                  break;
+                }
+              }
+              res.status(400).json({
+                msg: "Authentication failed, User Does Not Exist"
+              })
+            })
+
+    }
+  })
+  
 })
 
 app.get('/profile/:userid', (req, res) => {

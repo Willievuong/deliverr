@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "firebase-admin": "^7.2.0",
     "firebase-functions": "^2.2.1",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "google-distance-matrix": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
