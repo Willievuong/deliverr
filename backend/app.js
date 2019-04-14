@@ -321,6 +321,7 @@ app.post('/postuser', (req, res) => {
 });
 
 app.post('/posttrip', (req, res) => {
+  console.log(req);
   var accList = {}
   var i = 0
   firebase.database().ref('/TravelInformation').once('value', (data) => {

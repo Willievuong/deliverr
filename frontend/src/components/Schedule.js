@@ -1,12 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import './styles/schedule.css';
 
 class Schedule extends React.Component {
@@ -32,7 +26,6 @@ class Schedule extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
 
     return (
       
@@ -134,9 +127,5 @@ class Schedule extends React.Component {
     );
   }
 }
-
-Schedule.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default Schedule;
