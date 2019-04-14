@@ -329,22 +329,3 @@ app.get('/getpackageC/:recieverid', (req, res) => {
 app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
 });
-
- //   "EmailLink": {
- //     "584A2": {
- //        "PackageID": 0,
- //        "Clicked": 1
- //    },
- //    {
- //        "284A2": {
- //           "PackageID": 1,
- //           "Clicked": 0
- //        }
- //     },
- //     {
- //        "544A2": {
- //           "PackageID": 2,
- //           "Clicked": 0
- //           }
- //     }
- // }
