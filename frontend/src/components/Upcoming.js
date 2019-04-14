@@ -2,34 +2,8 @@ import React, { Component } from 'react';
 import {Typography} from '@material-ui/core';
 import UpcomingPanel from './UpcomingPanel';
 import './styles/upcoming.css';
-const progressData = [
-    {
-        "Name": "Trip To Paris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "This is like a really long description so it doesn't look absolutely disgusting"
-    },
-    {
-        "Name": "Trip To Baris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "Paris"
-    },
-];
 
-const upcomingData = [
+const data = [
     {
         "Name": "Trip To Paris",
         "UserID": 1,
@@ -75,7 +49,7 @@ export class Upcoming extends Component {
         this.display();
     }
     display = () => {
-        let newtrips = upcomingData.map((e, i) => {
+        let newtrips = data.map((e, i) => {
             console.log(e, i );
             return (<UpcomingPanel key={i} data={e}/>);
         });
