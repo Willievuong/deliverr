@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Typography} from '@material-ui/core';
-import UpcomingPanel from './UpcomingPanel';
-import './styles/upcoming.css';
+import ProgressPanel from './ProgressPanel';
+import { Typography } from '@material-ui/core';
 
 const data = [
     {
@@ -28,20 +27,9 @@ const data = [
         "Dimensions": "12 x 12 x 12",
         "Description": "Paris"
     },
-    {
-        "Name": "Trip To Caris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "Paris"
-    },
 ];
-export class Upcoming extends Component {
+
+export class Progress extends Component {
     state = {
         trips: [<Typography variant="h3" key={1}>No Trips</Typography>],
     };
@@ -50,8 +38,7 @@ export class Upcoming extends Component {
     }
     display = () => {
         let newtrips = data.map((e, i) => {
-            console.log(e, i );
-            return (<UpcomingPanel key={i} data={e}/>);
+            return (<ProgressPanel key={i} data={e}/>);
         });
         this.setState({
             trips: newtrips,
@@ -61,7 +48,7 @@ export class Upcoming extends Component {
         return (
         <div>
             <div className="title-top">
-                <Typography variant="h3">UPCOMING</Typography>
+                <Typography variant="h3">Progress</Typography>
             </div>
             <div id="upcoming-list">
                 {this.state.trips}
@@ -71,4 +58,4 @@ export class Upcoming extends Component {
     }
 }
 
-export default Upcoming;
+export default Progress;
