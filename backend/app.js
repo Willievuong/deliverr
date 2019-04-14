@@ -329,13 +329,3 @@ app.post('/updatemail/:mailid', (req, res) => {
 app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
 });
-
-
-//Tripname
-//Origin City
-//Destination City
-//deperature database
-//arrival database
-//weight
-//dimension
-//user id
