@@ -1,8 +1,11 @@
 import React from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
+
+import {TextField, Button} from '@material-ui/core';
+import swal from 'sweetalert';
 import './styles/schedule.css';
 
+const url = 'www.google.com';
 class Schedule extends React.Component {
   state = {
     name: '',
@@ -25,8 +28,29 @@ class Schedule extends React.Component {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
+  sendInfo = () => {
+    let body = {
+        "Desc": this.state.trip,
+        "Dimen": this.state.dimensions,
+        "Name": this.state.name,
+        "TimeA": this.state.date1,
+        "TimeL": this.state.date2,
+        "UserDestA":this.state.address1,
+        "UserDestB": this.state.address2,
+        "UserID":0,
+        "Weight":this.state.weight
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+    }).then(resp => {
+        swal("Success!", "Submitted info!", "success");
+    }).catch(err => {alert("u done goofed");})
+  }
   render() {
-
     return (
       
       <div>
@@ -121,7 +145,9 @@ class Schedule extends React.Component {
             value={this.state.description}
             onChange={this.handleChange('description')}
           />
-        
+            <div className="submit-button">
+                <Button variant="outlined" className="submit" onClick={this.sendInfo}>submit</Button>
+            </div>
         </div>
       </div>
     );

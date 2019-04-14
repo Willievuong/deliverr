@@ -2,81 +2,22 @@ import React, { Component } from 'react';
 import {Typography} from '@material-ui/core';
 import UpcomingPanel from './UpcomingPanel';
 import './styles/upcoming.css';
-const progressData = [
-    {
-        "Name": "Trip To Paris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "This is like a really long description so it doesn't look absolutely disgusting"
-    },
-    {
-        "Name": "Trip To Baris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "Paris"
-    },
-];
 
-const upcomingData = [
-    {
-        "Name": "Trip To Paris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "This is like a really long description so it doesn't look absolutely disgusting"
-    },
-    {
-        "Name": "Trip To Baris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "Paris"
-    },
-    {
-        "Name": "Trip To Caris",
-        "UserID": 1,
-        "TID": 0,
-        "UserDestinationA": "Airport 1",
-        "UserDestinationB": "Airport 2",
-        "Time Leave": "15:30:00",
-        "Time Arrival": "15:30:00",
-        "Weight": 12,
-        "Dimensions": "12 x 12 x 12",
-        "Description": "Paris"
-    },
-];
+const entireDatabase = 'https://c0c3e916.ngrok.io/travelInfo/1';
+
 export class Upcoming extends Component {
     state = {
         trips: [<Typography variant="h3" key={1}>No Trips</Typography>],
     };
     componentDidMount(){
-        this.display();
+        fetch(entireDatabase
+        ).then(resp => { return resp.json();}
+        ).then(resp => { console.log(resp); this.display(resp); })
+
     }
-    display = () => {
-        let newtrips = upcomingData.map((e, i) => {
-            console.log(e, i );
+    display = (data) => {
+        let newtrips = data.map((e, i) => {
+            console.log( e );
             return (<UpcomingPanel key={i} data={e}/>);
         });
         this.setState({

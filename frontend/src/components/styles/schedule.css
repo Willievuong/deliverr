@@ -44,3 +44,13 @@ p {
 .addressee {
     text-align: center;
 }
+.submit-button{
+    width: 100vw;
+    padding: 20px 0 20px 0;
+    text-align: center;
+}
+.submit{
+    background-color: #55dd55 !important;
+    border: none !important;
+    color: #FFFFFF !important;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProgressPanel from './ProgressPanel';
 import { Typography } from '@material-ui/core';
 
+
 const data = [
     {
         "Name": "Trip To Paris",

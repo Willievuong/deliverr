@@ -16,24 +16,24 @@ export class UpcomingPanel extends Component {
         return (
         <Card className="upcoming-panel" onClick={this.toggle}>
             <div className="panel-time">
-                {parseInt(d['Time Arrival'].substr(0, 2))%12 + d['Time Leave'].substr(2, 3)}
+                {parseInt(d['TimeA'].substr(0, 2))%12 + d['TimeA'].substr(2, 3)}
                 <br />
                 -
                 <br />
-                {parseInt(d['Time Leave'].substr(0, 2))%12 + d['Time Leave'].substr(2, 3)}
+                {parseInt(d['TimeL'].substr(0, 2))%12 + d['TimeL'].substr(2, 3)}
             </div>
             <div className="panel-description">
                 <span>{d['Name']}</span>
                 <br />
                 <br />
-                {d['UserDestinationA']} to {d['UserDestinationB']}
+                {d['UserDestA']} to {d['UserDestB']}
                 <br />
             </div>
             <Collapse className="expand" in={this.state.open}>
-                Dimensions: { d['Dimensions']}
+                Dimensions: { d['Dimen']}
                 <br />
                 <br />
-                {d['Description']}
+                {d['Desc']}
             </Collapse>
         </Card>
         )
