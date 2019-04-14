@@ -9,6 +9,7 @@ import temp from './components/temp';
 import Schedule from './components/Schedule';
 import Upcoming from './components/Upcoming';
 import './App.css';
+import SideNavPage from './components/Navbar';
 
 const theme = createMuiTheme({
     overrides: {
