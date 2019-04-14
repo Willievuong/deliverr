@@ -13,7 +13,6 @@ import Upcoming from './components/Upcoming';
 import Progress from './components/Progress';
 import Delivrr from './components/Delivrr';
 import './App.css';
-import SideNavPage from './components/Navbar';
 
 const theme = createMuiTheme({
     overrides: {
