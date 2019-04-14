@@ -85,5 +85,20 @@
          "SR Rating":0.2,
          "UserID":2
       }
-   ]
-}
+   ],
+    "EmailLink": {
+      "584A2": {
+         "PackageID": 0,
+         "Clicked": 1 
+         },
+
+      "284A2": {
+         "PackageID": 1,
+         "Clicked": 0 
+      },
+      "544A2": {
+         "PackageID": 2,
+         "Clicked": 0 
+         } 
+      }
+ }
