@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')({origin: true});
 var config = require('./config')
 var fbconfig = require('./fbconfig')
-var sendgridApi = require ('./sendgridApi')
+var sendNotification = require ('./sendgridApi')
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -257,7 +257,8 @@ app.get('/getpackageC/:recieverid', (req, res) => {
 
 app.get('/getmail/:mailid', (req, res) => {
 return cors(req, res, () => {
-  firebase.database().ref('/EmailLink/' + req.params.mailid).once('value', (data) => {res.send(data);});
+  var path = require('path')
+  res.sendFile(path.join(__dirname + '/index.html'))
   });
 });
 
@@ -363,7 +364,7 @@ app.post('/posttrip', (req, res) => {
 app.post('/postcreatepack', (req, res) => {
   var accList = {}
   var i = 0
-  firebase.database().ref('/TravelInformation').once('value', (data) => {
+  firebase.database().ref('/Package').once('value', (data) => {
   accList = data.val(); }).then(() => {
 
   var loopBool = true
@@ -384,21 +385,31 @@ app.post('/postcreatepack', (req, res) => {
       DName: profile["DName"],
       Desc:  profile["Desc"],
       Dimen:  profile["Dimen"],
-      PackageDID:  profile["Package DID"],
+      PackageDID:  profile["PackageDID"],
       PackageID: makeid(5),
       PLA: profile["PLA"],
       PLB: profile["PLB"],
-      PackagName: profile["Package Name"],
+      PackageName: profile["PackageName"],
       Received: profile["Received"],
-      ReceiverID: profile["Receiver ID"],
-      ReceiverName: profile["Receiver Name"],
-      SendeeID: profile["Sendee ID"],
-      SendeeName: profile["Sendee Name"],
+      ReceiverID: profile["ReceiverID"],
+      ReceiverName: profile["ReceiverName"],
+      SendeeID: profile["SendeeID"],
+      SendeeName: profile["SendeeName"],
       Sent: profile["Sent"],
       TID: profile["TID"],
-      Weight: profile["Weight"]
+      Weight: profile["Weight"],
+      AdresseeEmail: profile["AdresseeEmail"],
+      AdresseePhone: profile["AdresseePhone"]
     }).then(() => {
       res.send("It wooorks")
+      //Create an email and save it to the database
+      var emailid = makeid(5);
+      firebase.database().ref('EmailLink/' + emailid).set({
+        PackageID: profile["PackageID"],
+        Clicked: 0
+      })
+      //send and email to the user notifying of what's happening
+      sendNotification(profile["AdresseeEmail"], "getmail/" + emailid.toString(), profile["ReceiverName"], "http://a04e3d09.ngrok.io")
     });
   })
 
