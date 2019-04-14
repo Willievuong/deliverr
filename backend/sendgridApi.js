@@ -4,14 +4,17 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(config);
 
 //
-var sendNotification = (email, url, userName) => {
-  //htmlMsg = "You got a package from " + userName + ". Please use the link <a href="http://a04e3d09.ngrok.io/getmail/sdsd">here </a>";
+var sendNotification = (email, url, userName, website) => {
+  htmlMsg = 'You got a package from ' + userName + '. Please use the link <a href=';
+  htmlMsg += website
+  htmlMsg += '/';
+  htmlMsg += url + '>' + 'here </a> \n'
 
   const msg = {
     to: email,
     from: 'Notification@delivrr.com',
     subject: 'Incoming Package Notification',
-    html: 'You got a package from ' + userName + '. Please use the link <a href= + website' + '/' + url + '>' + 'here </a> \n',
+    html: htmlMsg,
   };
 
   sgMail.send(msg);
