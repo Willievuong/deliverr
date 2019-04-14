@@ -3,8 +3,6 @@ import {BottomNavigation, BottomNavigationAction, MuiThemeProvider, createMuiThe
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import UpcomingIcon from '@material-ui/icons/CalendarToday';
-import HistoryIcon from '@material-ui/icons/History';
-import ProgressIcon from '@material-ui/icons/HourglassFull';
 import PlaneIcon from './components/Polygon.png';
 import Login from './components/Login';
 import Schedule from './components/Schedule';
@@ -17,14 +15,14 @@ const theme = createMuiTheme({
     overrides: {
         MuiButton: {
             text: {
-            backgroundColor: 'linear-gradient(to bottom, #77c9d4, #65c7c8, #58c4b9, #53c0a6, #57bc90);',
+            backgroundColor: 'green',
             borderRadius: 3,
             border: 0,
             color: 'white',
             height: 30,
             padding: '0 30px',
             margin: '20px',
-            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            boxShadow: '0 1px 1px #000000',
             fontFamily: 'Montserrat',
             fontWeight: 700,
             fontSize: 14

@@ -9,7 +9,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-google-login": "^5.0.4",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "react-scripts": "2.1.8"
