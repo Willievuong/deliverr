@@ -62,7 +62,7 @@ class Schedule extends React.Component {
             onChange={this.handleChange('phone2')}
           />
 
-          <hr size="1" width="60%" className="line"></hr>
+          <hr size="1" width="90%" className="line"></hr>
 
           <p className="addressee">Package Info.</p>
 
@@ -107,7 +107,7 @@ class Schedule extends React.Component {
           <TextField
             className="address margin"
             variant="outlined"
-            label="Origin Address"
+            label="Origin City"
             value={this.state.address1}
             onChange={this.handleChange('address1')}
           />
@@ -115,7 +115,7 @@ class Schedule extends React.Component {
           <TextField
             className="address margin"
             variant="outlined"
-            label="Destination Address"
+            label="Destination City"
             value={this.state.address2}
             onChange={this.handleChange('address2')}
           />
