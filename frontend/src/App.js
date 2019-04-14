@@ -7,7 +7,6 @@ import HistoryIcon from '@material-ui/icons/History';
 import ProgressIcon from '@material-ui/icons/HourglassFull';
 import PlaneIcon from './components/Polygon.png';
 import Login from './components/Login';
-import temp from './components/temp';
 import Schedule from './components/Schedule';
 import Upcoming from './components/Upcoming';
 import Progress from './components/Progress';
@@ -85,7 +84,6 @@ class App extends Component {
                         <Route path='/delivrr' component={Delivrr} />
                         <Route path='/progress' component={Progress} />
                         <Route path='/upcoming' component={Upcoming} />
-                        <Route path='/history' component={temp} />
                         <BottomNavigation value={this.state.value} onChange={this.handleChange} className="bottom-nav">
                             <BottomNavigationAction
                                 label="Schedule"
@@ -99,14 +97,7 @@ class App extends Component {
                                 value="delivrr"
                                 component={Link}
                                 to="/delivrr"
-                                icon={<div className="delivrr" > </div>}
-                            />
-                            <BottomNavigationAction
-                                label="In Progress"
-                                value="progress"
-                                component={Link}
-                                to="/progress"
-                                icon={<ProgressIcon />}
+                                icon={<img src={PlaneIcon} alt="Delivrr"/>}
                             />
                             <BottomNavigationAction
                                 label="Upcoming"
@@ -114,13 +105,6 @@ class App extends Component {
                                 component={Link}
                                 to="/upcoming"
                                 icon={<UpcomingIcon />}
-                            />
-                            <BottomNavigationAction
-                                label="History"
-                                value="history"
-                                component={Link}
-                                to="/history"
-                                icon={<HistoryIcon />}
                             />
                         </BottomNavigation>
                     </div>
