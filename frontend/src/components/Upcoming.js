@@ -71,4 +71,4 @@ export class Upcoming extends Component {
     }
 }
 
-export default Upcoming
+export default Upcoming;

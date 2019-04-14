@@ -4,10 +4,14 @@ import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import UpcomingIcon from '@material-ui/icons/CalendarToday';
 import HistoryIcon from '@material-ui/icons/History';
+import ProgressIcon from '@material-ui/icons/HourglassFull';
+import PlaneIcon from './components/Polygon.png';
 import Login from './components/Login';
 import temp from './components/temp';
 import Schedule from './components/Schedule';
 import Upcoming from './components/Upcoming';
+import Progress from './components/Progress';
+import Delivrr from './components/Delivrr';
 import './App.css';
 import SideNavPage from './components/Navbar';
 
@@ -79,6 +83,8 @@ class App extends Component {
                 <Route strict path='/:page' render={() => 
                     <div className="page">
                         <Route path='/schedule' component={Schedule} />
+                        <Route path='/delivrr' component={Delivrr} />
+                        <Route path='/progress' component={Progress} />
                         <Route path='/upcoming' component={Upcoming} />
                         <Route path='/history' component={temp} />
                         <BottomNavigation value={this.state.value} onChange={this.handleChange} className="bottom-nav">
@@ -88,6 +94,20 @@ class App extends Component {
                                 component={Link}
                                 to="/schedule"
                                 icon={<ScheduleIcon />}
+                            />
+                            <BottomNavigationAction
+                                label="Delivrr"
+                                value="delivrr"
+                                component={Link}
+                                to="/delivrr"
+                                icon={<div className="delivrr" > </div>}
+                            />
+                            <BottomNavigationAction
+                                label="In Progress"
+                                value="progress"
+                                component={Link}
+                                to="/progress"
+                                icon={<ProgressIcon />}
                             />
                             <BottomNavigationAction
                                 label="Upcoming"
