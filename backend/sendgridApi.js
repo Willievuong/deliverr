@@ -10,4 +10,9 @@ const msg = {
 };
 
 console.log("Message: " + msg['subject']);
+
+
+
+
+
 sgMail.send(msg);
