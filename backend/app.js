@@ -408,7 +408,7 @@ app.post('/postcreatepack', (req, res) => {
         Clicked: 0
       })
       //send and email to the user notifying of what's happening
-      sendNotification(profile["AdresseeEmail"], "getmail/" + emailid.toString(), profile["ReceiverName"], "http://a04e3d09.ngrok.io")
+      sendNotification(profile["AdresseeEmail"], "http://a04e3d09.ngrok.io" + "/getmail/" + emailid.toString(), profile["ReceiverName"], "http://a04e3d09.ngrok.io")
     });
   })
 

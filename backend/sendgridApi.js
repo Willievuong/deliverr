@@ -5,7 +5,7 @@ sgMail.setApiKey(config);
 
 //
 var sendNotification = (email, url, userName) => {
-  //htmlMsg = "You got a package from " + userName + ". Please use the link <a href='" + website + '/' + url + '>' + "here </a>";
+  //htmlMsg = "You got a package from " + userName + ". Please use the link <a href="http://a04e3d09.ngrok.io/getmail/sdsd">here </a>";
 
   const msg = {
     to: email,
