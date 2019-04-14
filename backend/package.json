@@ -9,7 +9,8 @@
     "express": "^4.16.4",
     "firebase-admin": "^7.2.0",
     "firebase-functions": "^2.2.1",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "google-distance-matrix": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
