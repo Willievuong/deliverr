@@ -14,6 +14,15 @@ var firebase= require("firebase-admin");
 
 var serviceAccount = require("./key.json");
 
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
 firebase.initializeApp({
  credential: firebase.credential.cert(serviceAccount),
  databaseURL: "https://deliverr-it-bitch.firebaseio.com"
@@ -111,6 +120,7 @@ app.get('/getpackageB/:deliverid', (req, res) => {
   var loopBool = true
   while(loopBool) {
     if (accList[i.toString()]){
+
       if(accList[i.toString()]["Package DID"] == deliverid){
         console.log(accList[i.toString()])
         array.push(accList[i.toString()])
@@ -125,7 +135,7 @@ app.get('/getpackageB/:deliverid', (req, res) => {
   res.send(array)});
 });
 
-app.get('/getpackageC/:recieverid:', (req, res) => {
+app.get('/getpackageC/:recieverid', (req, res) => {
   var recieverid = req.params.recieverid;
   var array = [];
   var accList = {}
@@ -140,7 +150,6 @@ app.get('/getpackageC/:recieverid:', (req, res) => {
         console.log(accList[i.toString()])
         array.push(accList[i.toString()])
       }
-
         i++;
     }else{
       loopBool = false;
@@ -151,23 +160,38 @@ app.get('/getpackageC/:recieverid:', (req, res) => {
 });
 
 app.post('/addprofile', (req, res) => {
-  // res.send(req.body)
-  var body = req.body
+  var profile = req.body
+  console.log(profile)
   return cors(req, res, () => {
-
-    var newPostKey = firebase.database().ref().child('UserAccount').push().key;
-    var updates = {};
-    updates[UserAccount/UserID/ + newPostKey] = postData
-    firebase.database().ref('UserAccount').set(body, function(error) {
-      if (error) {
-        // The write failed...
-      } else {
-        // Data saved successfully!
-        res.send("Success")
-      }
-    });
-  });
+    firebase.database().ref('/UserAccount').set({
+    "Drating" : profile["Drating"],
+    "Email" : profile["Email"],
+    "FB Token" : "TEST WORKS",
+    "Name" : profile["Name"],
+    "Phone" : profile["Phone"],
+    "SR Rating" : 4.7,
+    "UserID" : makeid(5)
+    })
+  })
 });
+// app.post('/addprofile', (req, res) => {
+//   // res.send(req.body)
+//   var body = req.body
+//   return cors(req, res, () => {
+
+//     var newPostKey = firebase.database().ref().child('UserAccount').push().key;
+//     var updates = {};
+//     updates[UserAccount/UserID/ + newPostKey] = postData
+//     firebase.database().ref('UserAccount').set(body, function(error) {
+//       if (error) {
+//         // The write failed...
+//       } else {
+//         // Data saved successfully!
+//         res.send("Success")
+//       }
+//     });
+//   });
+// });
 
 
 app.listen(5000, () => {
