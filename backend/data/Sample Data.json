@@ -4,8 +4,8 @@
         "DName":"Jeffrey Ha",
         "Desc":"Chocolate",
         "Dimen":"12 x 12 x 12",
-        "Package DID":1,
-        "Package ID":0,
+        "PackageDID":1,
+        "PackageID":0,
         "PLA":"123 Street",
         "PLB":"321 Street",
         "PackageName":"Awake Chocolate",
@@ -16,7 +16,9 @@
         "SendeeName":"Stanley Lee",
         "Sent":1,
         "TID":0,
-        "Weight":12
+        "Weight":12,
+        "AdresseeEmail": "stanleylee91776@gmail.com",
+        "AdresseePhone":"6262728111"
      }
   ],
   "TravelInformation":[

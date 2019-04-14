@@ -4,7 +4,7 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(config);
 
 //
-var sendNotification = (email, url, userName, website) => {
+var sendNotification = (email, url, userName) => {
   //htmlMsg = "You got a package from " + userName + ". Please use the link <a href='" + website + '/' + url + '>' + "here </a>";
 
   const msg = {
@@ -17,6 +17,6 @@ var sendNotification = (email, url, userName, website) => {
   sgMail.send(msg);
 }
 
-// Example of using the sendNotification  
+// Example of using the sendNotification
 // sendNotification("wpvuong@ucsd.edu", "something", "William Vuong", "https://c9a7fd17.ngrok.io");
 module.exports = sendNotification;
