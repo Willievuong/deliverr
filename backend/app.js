@@ -24,6 +24,25 @@ function makeid(length) {
   return text;
 }
 
+function find_length(json) {
+  var i = 0
+  var loopBool = true
+  while(loopBool) {
+    if (accList[i.toString()]){
+      if(accList[i.toString()]["UserID"] == userid){
+        var user = accList[i.toString()]
+        res.send(user)
+        loopBool = false;
+        break;
+      }
+        i++;
+    }else{
+      loopBool = false;
+      break;
+    }
+    return i
+}
+
 firebase.initializeApp({
  credential: firebase.credential.cert(serviceAccount),
  databaseURL: "https://deliverr-it-bitch.firebaseio.com"
@@ -254,32 +273,48 @@ app.get('/getpackageC/:recieverid', (req, res) => {
   res.send(array)});
 });
 
-// app.get('/getmail/:mailid', (req, res) => {
-// return cors(req, res, () => {
-//   firebase.database().ref('/EmailLink/' + req.params.mailid).once('value', (data) => {res.send(data);});
-//   });
-// }
+app.get('/getmail/:mailid', (req, res) => {
+return cors(req, res, () => {
+  firebase.database().ref('/EmailLink/' + req.params.mailid).once('value', (data) => {res.send(data);});
+  });
+});
 
-// app.post('/postmail, (req, res) => {
-//   var profile = req.body
-//   console.log(profile)
 
-// }
+app.post('/postmail', (req, res) => {
+  var profile = req.body
+  console.log(profile)
+  firebase.database().ref('EmailLink/' + makeid(5)).set({
+    PackageID: profile["PackageID"],
+    Clicked: profile["Clicked"]
+  }).then(() => {
+    res.send("It wooorks")
+  });
+});
 
-// app.post('/postemail/:recieverid', (req, res) => {
-//   var recieverid = req.params.recieverid;
+app.post('/updatemail/:mailid', (req, res) => {
+  var profile = req.body
+  firebase.database().ref('EmailLink/' + req.params.mailid).set({
+    PackageID: profile["PackageID"],
+    Clicked: profile["Clicked"]
+  }).then(() => {
+    res.send("It wooorks")
+  });
+});
+
+// app.post('/updatetrip', (req, res) => {
 //   var array = [];
 //   var accList = {}
-//   firebase.database().ref('/Package').once('value', (data) => {
+//   firebase.database().ref('/TravelInformation').once('value', (data) => {
 //   accList = data.val(); }).then(() => {
 //   var i = 0
 //   var loopBool = true
 //   while(loopBool) {
 //     if (accList[i.toString()]){
-
-//       if(accList[i.toString()]["Receiver ID"] == recieverid){
-//         console.log(accList[i.toString()])
-//         array.push(accList[i.toString()])
+//       if(accList[i.toString()]["TID"] == tid){
+//         var user = accList[i.toString()]
+//         res.send(user)
+//         loopBool = false;
+//         break;
 //       }
 //         i++;
 //     }else{
@@ -287,42 +322,7 @@ app.get('/getpackageC/:recieverid', (req, res) => {
 //       break;
 //     }
 //   }
-//   res.send(array)});
-// });
-
-// app.post('/addprofile', (req, res) => {
-//   var profile = req.body
-//   console.log(profile)
-//   return cors(req, res, (req, res) => {
-//     firebase.database().ref('/UserAccount').([{
-//     "Drating" : profile["Drating"],
-//     "Email" : profile["Email"],
-//     "FB Token" : "TEST WORKS",
-//     "Name" : profile["Name"],
-//     "Phone" : profile["Phone"],
-//     "SR Rating" : 4.7,
-//     "UserID" : makeid(5)
-//     }])
-
-//   })
-// });
-// app.post('/addprofile', (req, res) => {
-//   // res.send(req.body)
-//   var body = req.body
-//   return cors(req, res, () => {
-
-//     var newPostKey = firebase.database().ref().child('UserAccount').push().key;
-//     var updates = {};
-//     updates[UserAccount/UserID/ + newPostKey] = postData
-//     firebase.database().ref('UserAccount').set(body, function(error) {
-//       if (error) {
-//         // The write failed...
-//       } else {
-//         // Data saved successfully!
-//         res.send("Success")
-//       }
-//     });
-//   });
+//   console.log(i)
 // });
 
 
@@ -330,21 +330,12 @@ app.listen(5000, () => {
   console.log('Server is running. On Port 5000');
 });
 
- //   "EmailLink": {
- //     "584A2": {
- //        "PackageID": 0,
- //        "Clicked": 1
- //    },
- //    {
- //        "284A2": {
- //           "PackageID": 1,
- //           "Clicked": 0
- //        }
- //     },
- //     {
- //        "544A2": {
- //           "PackageID": 2,
- //           "Clicked": 0
- //           }
- //     }
- // }
+
+//Tripname
+//Origin City
+//Destination City
+//deperature database
+//arrival database
+//weight
+//dimension
+//user id
