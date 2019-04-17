@@ -4,8 +4,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import {TextField, Button} from '@material-ui/core';
 import swal from 'sweetalert';
 import './styles/schedule.css';
+import API from '../API';
 
-const url = 'www.google.com';
+var URL = require('./URL')
+const url = URL;
 class Schedule extends React.Component {
   state = {
     name: '',
@@ -29,26 +31,52 @@ class Schedule extends React.Component {
   };
 
   sendInfo = () => {
-    let body = {
-        "Desc": this.state.trip,
-        "Dimen": this.state.dimensions,
-        "Name": this.state.name,
-        "TimeA": this.state.date1,
-        "TimeL": this.state.date2,
-        "UserDestA":this.state.address1,
-        "UserDestB": this.state.address2,
-        "UserID":0,
-        "Weight":this.state.weight
-    };
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body)
-    }).then(resp => {
-        swal("Success!", "Submitted info!", "success");
-    }).catch(err => {alert("u done goofed");})
+    // let body = {
+    //     "Desc": this.state.trip,
+    //     "Dimen": this.state.dimensions,
+    //     "Name": this.state.name,
+    //     "TimeA": this.state.date1,
+    //     "TimeL": this.state.date2,
+    //     "UserDestA":this.state.address1,
+    //     "UserDestB": this.state.address2,
+    //     "UserID":0,
+    //     "Weight":this.state.weight
+    // };
+
+    var body = {
+      "DName":"Alisa Rogers",
+      "Desc":this.state.description,
+      "Dimen":"12 x 12 x 12",
+      "PackageDID":1,
+      "PackageID":0,
+      "PLA": this.state.address1,
+      "PLB":this.state.address2,
+      "PackageName": this.state.name,
+      "Received":0,
+      "ReceiverID":2,
+      "ReceiverName":"Will Tran",
+      "SendeeID":0,
+      "SendeeName":"Stanley Lee",
+      "Sent":1,
+      "TID":0,
+      "Weight":12,
+      "AdresseeEmail": this.state.email,
+      "AdresseePhone":this.state.phone2
+    }    
+    // fetch(url, {
+    //     method: 'POST',
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(body)
+    // }).then(resp => {
+    //     swal("Success!", "Submitted info!", "success");
+    // }).catch(err => {alert("u done goofed");})
+    API.addPackage(body).then(() =>{
+      console.log("Adding Package is Successful");
+    }).catch((error) =>{
+      console.log(error);
+    })
   }
   render() {
     return (

@@ -4,8 +4,10 @@ import TextField from '@material-ui/core/TextField';
 import './styles/schedule.css';
 import swal from 'sweetalert';
 import {Button} from '@material-ui/core';
+import API from '../API';
 
-const url = 'https://c0c3e916.ngrok.io/posttrip';
+var URL = require('./URL')
+const url = URL + 'posttrip';
 class Delivrr extends React.Component {
     state = {
         name: '',
@@ -38,16 +40,21 @@ class Delivrr extends React.Component {
             "UserID":0,
             "Weight":this.state.weight
         };
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body)
-        }).then(resp => {
-            swal("Success!", "Submitted info!", "success");
-        }).catch(err => {alert("u done goofed");})
-        
+        // fetch(url, {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(body)
+        // }).then(resp => {
+        //     swal("Success!", "Submitted info!", "success");
+        // }).catch(err => {alert("u done goofed");})
+        API.addTrip(body).then(() =>{
+            console.log("Success in Posting Trip")
+        }).catch((error) =>{
+            console.log(error);
+        })
+
     };
     render() {
         return (

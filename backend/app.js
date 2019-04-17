@@ -7,6 +7,7 @@ var cors = require('cors')({origin: true});
 var config = require('./config')
 var fbconfig = require('./fbconfig')
 var sendNotification = require ('./sendgridApi')
+var ngrokURL = "https://localhost:5000/"
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -409,7 +410,7 @@ app.post('/postcreatepack', (req, res) => {
         Clicked: 0
       })
       //send and email to the user notifying of what's happening
-      sendNotification(profile["AdresseeEmail"],"getmail/" + emailid.toString(), profile["ReceiverName"], "http://a04e3d09.ngrok.io")
+      sendNotification(profile["AdresseeEmail"],"getmail/" + emailid.toString(), profile["ReceiverName"], ngrokURL)
     });
   })
 
